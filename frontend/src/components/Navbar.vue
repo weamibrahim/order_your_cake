@@ -71,22 +71,14 @@ export default {
       isLoggedIn.value = false; // Update the status immediately
     };
 
-    // Check if the user is trying to access the "Dashboard" route and is not an admin
-    const checkAdminAccess = (to, from, next) => {
-      if (to.path === "/dashboard" && userRole.value !== "admin") {
-        next("/home"); // Redirect non-admin users to the "Home" page
-      } else {
-        next(); // Continue with the navigation
-      }
-    };
+  
 
     // Call the function when the component is mounted
     onMounted(() => {
       checkLoginStatus();
     });
 
-    // Register the navigation guard
-    router.beforeEach(checkAdminAccess);
+   
 
     return { logout, isLoggedIn, userRole };
   },

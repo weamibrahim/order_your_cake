@@ -85,15 +85,15 @@ const router = createRouter({
                })
 
 
-              // Initialize as an empty string
-              //  router.beforeEach((to, from, next) => {
-              //    const isAdmin = JSON.parse(localStorage.getItem('userData'))?.role === 'admin';
+              //Initialize as an empty string
+               router.beforeEach((to, from, next) => {
+                 const isAdmin = JSON.parse(localStorage.getItem('userData'))?.role === 'admin';
                
-              //    if (to.path.startsWith('/dashboard') && !isAdmin) {
-              //      next('/unauthorized'); // Redirect to an "Unauthorized" page
-              //    } else {
-              //      next(); // Allow access to the route
-              //    }
-              // });              
+                 if (to.path.startsWith('/dashboard') && !isAdmin) {
+                   next('/unauthorized'); // Redirect to an "Unauthorized" page
+                 } else {
+                   next(); // Allow access to the route
+                 }
+              });              
 
 createApp(App).use(router).mount('#app')
